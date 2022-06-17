@@ -1,4 +1,4 @@
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "./actionTypes";
+import { ADD_TASK, COMPLETE_TASK, DELETE_TASK, EDIT_TASK, FILTER_TASK } from "./actionTypes";
 
 const init={
     tasks:[
@@ -25,8 +25,16 @@ const reducer = (state=init,{type,payload})=>{
                 ...state,
                 tasks:state.tasks.map((el)=>
                 el.id===payload? {...el, isDone: !el.isDone} : el),
-            };        
-       
+            };   
+            case EDIT_TASK:
+                return{
+                    ...state,
+                    tasks: state.tasks.map((el)=>(el.id===payload.id?payload:el)),
+                }  
+            case FILTER_TASK:
+                return{
+                    ...state,filter: !state.filter,
+                };
         default:
         return state;
 

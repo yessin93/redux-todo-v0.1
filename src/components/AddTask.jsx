@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux/es/exports'
-import { addTask } from '../redux/action'
+import { addTask, filterTask } from '../redux/action'
 
 const AddTask = () => {
     const [text, setText] = useState('')
@@ -22,6 +22,7 @@ const AddTask = () => {
             <input type="text" value={text} onChange={((e)=>setText(e.target.value))} />
             <button>Add</button>
         </form>
+            <button onClick={()=>dispatch(filterTask())}>filter</button>
     </div>
   )
 }
